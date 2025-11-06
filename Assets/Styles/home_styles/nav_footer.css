@@ -198,6 +198,7 @@ footer{
 .nav-links a:hover::after,
 .menu-btn:hover::after {
   width: 100%;
+  
 }
 
 .menu {
@@ -223,7 +224,7 @@ footer{
 }
 
 .menu-content a:hover {
-  background-color: #ddd;
+  background-color: rgb(76, 79, 95);
 }
 
 .menu-content.show {

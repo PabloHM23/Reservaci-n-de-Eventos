@@ -7,6 +7,7 @@
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgba(170, 168, 168, 1);
+    flex-grow: 1;
 }
 
 @media (max-width: 768px) {
@@ -36,6 +37,11 @@
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     aspect-ratio: 1 / 0.8;
+}
+
+.event-card h3{
+    color: white;
+    text-align: left;
 }
 
 .event-card img {
