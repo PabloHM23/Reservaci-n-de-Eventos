@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/nav_footer.css">
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_welcom.css">
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_events.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/login.css">
     <script src="Assets/Js/home.js"></script>
     <title>Agora</title>
     <link rel="shortcut icon" href="Assets/img/logo.png" type="image/x-icon">
@@ -35,10 +36,61 @@
                     </div>
                 </li>
                 <li><button class="menu-btn">Calendario</button></li>
-                <li><button class="menu-btn">Iniciar sesión</button></li>
+                <li>
+                    <button id="abrirModalBtn" class="btn menu-btn">Iniciar sesión</button>
+                </li>
             </ul>
-            
-            <button class="btn-registrarse">Registrarse</button>
+            <button id="btn_registrarse" class="btn-registrarse">Registrarse</button>
+            <div id="miModal" class="modal">
+                <div class="modal-contenido">
+                    <div id="vistaRegistro">
+                        <span class="cerrar">&times;</span>
+                        <h3>Regístrate con nosotros</h3>
+                        <form>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre">
+
+                            <label for="email-reg">Correo</label>
+                            <input type="email" id="email-reg" name="email" placeholder="Ejem: correo@gmail.com">
+
+                            <label for="pass-reg">Contraseña</label>
+                            <div class="password_wraper">
+                                <input type="password" id="pass-reg" name="pass">
+                                <img src="Assets/img/pass.png" class="pass_icon">
+                            </div>
+
+                            <button type="submit" class="btn btn-primario">Crear cuenta</button>
+                        </form>
+                        
+                        <div class="toggle-seccion">
+                            <span>¿Ya tienes cuenta?</span>
+                            <button id="mostrarLoginBtn" class="btn btn-secundario">Iniciar sesión</button>
+                        </div>
+                    </div>
+
+                    <div id="vistaLogin" style="display: none;">
+                        <span class="cerrar">&times;</span>
+                        <h3>Iniciar sesión</h3>
+                        <form>
+                            <label for="email-login">Correo</label>
+                            <input type="email" id="email-login" name="email" placeholder="Ejem: correo@gmail.com">
+
+                            <label for="pass-reg">Contraseña</label>
+                            <div class="password_wraper">
+                                <input type="password" id="pass-reg" name="pass">
+                                <img src="Assets/img/pass.png" class="pass_icon_2">
+                            </div> 
+
+                            <button type="submit" class="btn btn-primario">Entrar</button>
+                        </form>
+                        
+                        <div class="toggle-seccion">
+                            <span>¿No tienes cuenta?</span>
+                            <button id="mostrarRegistroBtn" class="btn btn-secundario">Regístrate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
 
