@@ -161,3 +161,77 @@ footer{
     font-size: 1.5rem;
   }
 }
+
+.nav-links a,
+.menu-btn {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit; 
+  padding: 10px 0; 
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links a::after,
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #4da3ff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.menu-btn:hover::after {
+  width: 100%;
+}
+
+ul li a::after{
+  background-color: #4da3ff;
+  transition: width 0.3s ease;
+  height: 2px;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-content {
+  display: none; 
+  position: absolute;
+  background-color: rgba(48, 50, 61, 1);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999;
+  border-radius: 4px; 
+}
+
+.menu-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-content a:hover {
+  background-color: #ddd;
+}
+
+.menu-content.show {
+  display: block;
+}

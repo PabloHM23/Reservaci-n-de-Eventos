@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/nav_footer.css">
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_welcom.css">
     <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_events.css">
+    <script src="Assets/Js/home.js"></script>
     <title>Agora</title>
     <link rel="shortcut icon" href="Assets/img/logo.png" type="image/x-icon">
 </head>
@@ -13,10 +14,30 @@
     <div class="nav">
         <div class="logo"><a href="index.html">AGORA</a></div>
         <nav class="nav_links">
-            <ul><li><a href="#">Eventos</a></li></ul>
-            <ul><li><a href="#">Reservaciones</a></li></ul>
-            <ul><li><a href="#">Calendario </a></li></ul>
-            <ul><li><a href="#">Iniciar sesión </a></li></ul>
+            <ul class="nav-menus">
+                <li class="menu">
+                    <button class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                        Eventos
+                    </button>
+                    <div class="menu-content">
+                        <a href="#">Conciertos</a>
+                        <a href="#">Conferencias</a>
+                        <a href="#">Talleres</a>
+                    </div>
+                </li>
+                <li class="menu">
+                    <button class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                        Reservaciones
+                    </button>
+                    <div class="menu-content">
+                        <a href="#">Mesas</a>
+                        <a href="#">Salones Privados</a>
+                    </div>
+                </li>
+                <li><button class="menu-btn">Calendario</button></li>
+                <li><button class="menu-btn">Iniciar sesión</button></li>
+            </ul>
+            
             <button class="btn-registrarse">Registrarse</button>
         </nav>
     </div>
