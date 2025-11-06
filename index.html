@@ -3,49 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="Assets/Styles/home.css">
-    <title>Agora - Home</title>
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/nav_footer.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_welcom.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/home_styles/home_events.css">
+    <title>Agora</title>
 </head>
 <body>
     <div class="nav">
-        <h1>Agora</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="">Eventos</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="">Reservaciones</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="">Calendario</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="">Iniciar Sesión</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="">Registrarse</a>
-                </li>
-            </ul>
+        <div class="logo"><a href="index.html">AGORA</a></div>
+        <nav class="nav_links">
+            <ul><li><a href="#">Eventos</a></li></ul>
+            <ul><li><a href="#">Reservaciones</a></li></ul>
+            <ul><li><a href="#">Calendario </a></li></ul>
+            <ul><li><a href="#">Iniciar sesión </a></li></ul>
+            <button class="btn-registrarse">Registrarse</button>
         </nav>
     </div>
 
-    <div class="container">
+    <section class="info_main">
+        <div class="info">
+            <div class="cont_img">
+                <img src="Assets/img/img_home.png">
 
-    </div>
+                <div class="info_img">
+                    <h1>Tu Escenario, Tu Evento.</h1>
+                    <p>Encuentra, crea y gestiona eventos que inspiran.</p>
+                    <ul>
+                        <li>Descubre y asiste: Conciertos, conferencias, bodas y más.</li>
+                        <li>Crea en minutos: Arma tu propio evento fácilmente.</li>
+                        <li>Gestión amigable: Gestiona y administra tus eventos.</li>
+                    </ul>
+                    <div class="buttons">
+                        <button class="button_1">Empieza a crear tu evento ahora</button>
+                        <button class="button_2">Explorar Eventos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
 
-    <div>
-        <footer>
-            <h2>Agora</h2>
-            &#169; 2025 Agora. Todos los derechos reservados
+    <section class="info_main_2">
+        <h2>Póximos Eventos Destacados</h2>
+        <p>¡No te pierdas de los mejores eventos cerca de ti!</p>
+    </section>
+    
+    <br>
+    
+    <section class="event-cards-section">
+        <div class="cards-grid">
+            <div class="event-card">
+                <img src="Assets/img/tag_salon.png" alt="Salón de eventos vacío con mesas puestas">
+                <div class="card-overlay">
+                    <h3 class="card-title">Salón "Santa Fe"</h3>
+                    <p class="card-meta">Salón para eventos</p>
+                    <p class="card-date">Martes 4 Nov</p>
+                    <button class="btn-details purple">Ver Detalles</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="Assets/img/tag_boda.png" alt="Pareja de novios de espaldas">
+                <div class="card-overlay">
+                    <h3 class="card-title">Boda de Edgar y Juanita</h3>
+                    <p class="card-meta">Boda</p>
+                    <p class="card-date">Martes 4 Nov</p>
+                    <button class="btn-details magenta">Ver Detalles</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="Assets/img/tag_conf.png" alt="Conferencia de negocios con un panel de personas">
+                <div class="card-overlay">
+                    <h3 class="card-title">Platica sobre el cambio climatico</h3>
+                    <p class="card-meta">Conferencia</p>
+                    <p class="card-date">Miércoles 5 Nov</p>
+                    <button class="btn-details dark-blue">Ver Detalles</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="Assets/img/tag_sport.png" alt="Arco de salida de carrera atlética">
+                <div class="card-overlay">
+                    <h3 class="card-title">Carrera Gatorade x Power ade</h3>
+                    <p class="card-meta">Carrera atlética</p>
+                    <p class="card-date">Miércoles 5 Nov</p>
+                    <button class="btn-details bright-blue">Ver Detalles</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="Assets/img/tag_concert.png" alt="Concierto de música con luces de colores">
+                <div class="card-overlay">
+                    <h3 class="card-title">Concierto benéfico</h3>
+                    <p class="card-meta">Concierto</p>
+                    <p class="card-date">Jueves 6 Nov</p>
+                    <button class="btn-details orange">Ver Detalles</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="Assets/img/tag_art.png" alt="Galería de arte con cuadros en la pared">
+                <div class="card-overlay">
+                    <h3 class="card-title">Expo artes y dibujos</h3>
+                    <p class="card-meta">Exposición de arte</p>
+                    <p class="card-date">Jueves 6 Nov</p>
+                    <button class="btn-details maroon">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <span class="pagination-link">&lt; Anterior</span>
+            <span class="pagination-link current">1</span>
+            <span class="pagination-link">2</span>
+            <span class="pagination-link">Siguiente &gt;</span>
+        </div>
+    </section>
+
+    <br>
+
+    <div id="footer">
+        <footer class="footer">
+            <div class="footer_content">
+                <div class="name">
+                    AGORA
+                </div>
+                <div class="contact_info">
+                    Contáctanos 
+                    <br>
+                    Av. Calle falso #1234
+                    <br>
+                    <a href="mailto: Agoraeventos@correofalso.com">Agoraeventos@correofalso.com</a>
+                    <br>
+                    012 000 45-150 
+                    <br>
+                    <br>
+                    © 2025 Agora Todos los derechos reservados.
+                </div>
+                <div class="div_3"></div>
+            </div>
         </footer>
     </div>
 </body>
