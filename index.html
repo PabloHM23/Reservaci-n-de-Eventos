@@ -45,23 +45,19 @@
                 <div class="modal-contenido">
                     <div id="vistaRegistro">
                         <span class="cerrar">&times;</span>
-                        <h3>Regístrate con nosotros</h3>
-                        <form>
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre">
-
-                            <label for="email-reg">Correo</label>
-                            <input type="email" id="email-reg" name="email" placeholder="Ejem: correo@gmail.com">
-
-                            <label for="pass-reg">Contraseña</label>
-                            <div class="password_wraper">
-                                <input type="password" id="pass-reg" name="pass">
-                                <img src="Assets/img/pass.png" class="pass_icon">
-                            </div>
-
-                            <button type="submit" class="btn btn-primario">Crear cuenta</button>
-                        </form>
-                        
+                            <h3>Regístrate con nosotros</h3>
+                            <form id="formRegistro" novalidate>
+                                <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre">
+                                    <div class="error-txt"></div> <label for="email-reg">Correo</label>
+                                    <input type="email" id="email-reg" name="email" placeholder="Ejem: correo@gmail.com">
+                                    <div class="error-txt"></div> <label for="pass-reg">Contraseña</label>
+                                    <div class="password-wrapper"> 
+                                    <input type="password" id="pass-reg" name="pass-reg">
+                                    <img src="Assets/img/pass.png" class="pass_icon"> 
+                                    </div>
+                                <div class="error-txt"></div> <button type="submit" class="btn btn-primario">Crear cuenta</button>
+                            </form>   
                         <div class="toggle-seccion">
                             <span>¿Ya tienes cuenta?</span>
                             <button id="mostrarLoginBtn" class="btn btn-secundario">Iniciar sesión</button>
@@ -71,17 +67,15 @@
                     <div id="vistaLogin" style="display: none;">
                         <span class="cerrar">&times;</span>
                         <h3>Iniciar sesión</h3>
-                        <form>
+                        
+                        <form id="formLogin" novalidate>
                             <label for="email-login">Correo</label>
-                            <input type="email" id="email-login" name="email" placeholder="Ejem: correo@gmail.com">
-
-                            <label for="pass-reg">Contraseña</label>
-                            <div class="password_wraper">
-                                <input type="password" id="pass-reg" name="pass">
-                                <img src="Assets/img/pass.png" class="pass_icon_2">
+                            <input class="mail" type="email" id="email-login" name="email" placeholder="Ejem: correo@gmail.com">
+                            <div class="error-txt"></div> <label for="pass-login">Contraseña</label> 
+                            <div class="password-wrapper"> <input type="password" id="pass-login" name="pass-login"> 
+                                <img src="Assets/img/pass.png" class="pass_icon"> 
                             </div> 
-
-                            <button type="submit" class="btn btn-primario">Entrar</button>
+                            <div class="error-txt"></div> <button type="submit" class="btn btn-primario">Entrar</button>
                         </form>
                         
                         <div class="toggle-seccion">
@@ -90,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         </nav>
     </div>
 

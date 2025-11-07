@@ -14,14 +14,36 @@
     padding: 0px;
 }
 
+.info_main_e {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .info {
     width: 100%;
+    height: 50%;
     max-width: 1500px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+.info_e {
+    width: 100%;
+    max-width: 1500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
 .cont_img {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.cont_img_e {
     position: relative;
     width: 100%;
     height: 700px;
@@ -39,6 +61,17 @@
     z-index: 1;
 }
 
+.cont_img_e img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: -50%;
+    object-fit: cover;
+    z-index: 1;
+
+}
+
 .cont_img::after {
     content: '';
     position: absolute;
@@ -46,6 +79,17 @@
     left: 0;
     width: 50%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2;
+}
+
+.cont_img_e::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
     background: rgba(0, 0, 0, 0.85);
     z-index: 2;
 }
@@ -58,10 +102,26 @@
     max-width: 600px;
 }
 
+.info_img_e{
+    position: relative;
+    z-index: 3;
+    color: white;
+    padding: 40px;
+    margin-bottom: auto;
+    max-width: 600px;
+}
+
 .info_img h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.info_img_e h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0px;
     line-height: 1.1;
 }
 
@@ -71,7 +131,18 @@
     line-height: 1.5;
 }
 
+.info_img_e p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
 .info_img ul {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+.info_img_e ul {
     list-style-type: none;
     margin-bottom: 30px;
 }
@@ -83,7 +154,22 @@
     position: relative;
 }
 
+.info_img_e li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
 .info_img li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.info_img_e li::before {
     content: '✓';
     position: absolute;
     left: 0;

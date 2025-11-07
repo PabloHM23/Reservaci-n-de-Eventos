@@ -123,7 +123,7 @@ input.error-field {
     position: absolute;
     right: 5; 
     top: 50%;
-    transform: translateY(-40%);
+    transform: translateY(-50%);
     transform: translateX(-130%);
     cursor: pointer;
     width: 20px;
@@ -132,9 +132,26 @@ input.error-field {
 .pass_icon_2 {
     position: absolute;
     right: 5; 
-    top: 41%;
-    transform: translateY(-150%);
-    transform: translateX(-130%);
+    top: 50%;
+    transform: translateY(-130%);
+    transform: translateX(-100%);
     cursor: pointer;
     width: 20px;
+}
+
+input.success {
+    border: 2px solid #28a745;
+}
+
+input.error {
+    border: 2px solid #dc3545;
+}
+
+.error-txt {
+    color: #dc3545;
+    font-size: 0.9em;
+    font-weight: bold;
+    height: 1.2em;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }

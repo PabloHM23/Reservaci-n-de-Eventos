@@ -101,6 +101,83 @@ a{
   }
 }
 
+.nav_links {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.nav_links a{
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.btn-hamburger {
+  display: none;
+  font-size: 2.2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  
+  .nav {
+    padding: 20px 30px
+  }
+
+  .btn-hamburger {
+    display: block; 
+  }
+
+  .nav_links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: rgba(48, 50, 61, 1);
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 25px;
+  }
+  
+  .nav_links.open {
+    display: flex;
+  }
+
+  .nav-menus {
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 0;
+  }
+  
+  .menu {
+     width: 100%;
+     text-align: center;
+     margin: 0;
+  }
+
+  .btn-registrarse {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  ul {
+    gap: 0;
+    display: block;
+  }
+  li {
+    margin: 0;
+    display: block;
+  }
+}
+
 footer{
   background-color: rgba(48, 50, 61, 1);
   width: auto;
