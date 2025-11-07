@@ -120,21 +120,21 @@ input.error-field {
 }
 
 .pass_icon {
-    position: absolute;
+    position: fixed;
     right: 5; 
-    top: 50%;
-    transform: translateY(-50%);
+    top: 50.5%;
+    transform: translateY(-60%);
     transform: translateX(-130%);
     cursor: pointer;
     width: 20px;
 }
 
 .pass_icon_2 {
-    position: absolute;
+    position: fixed;
     right: 5; 
-    top: 50%;
-    transform: translateY(-130%);
-    transform: translateX(-100%);
+    top: 46%;
+    transform: translateY(-90%);
+    transform: translateX(-130%);
     cursor: pointer;
     width: 20px;
 }
