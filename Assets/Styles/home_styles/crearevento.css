@@ -203,7 +203,7 @@ input:checked + .slider:before {
 }
 
 .btn-publicar {
-  background-color: #E6951D; 
+  background-color: rgba(224, 152, 50, 1); 
   color: white;
   display: flex;
   align-items: center;
