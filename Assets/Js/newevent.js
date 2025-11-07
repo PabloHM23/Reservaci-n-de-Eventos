@@ -1,23 +1,21 @@
-// Espera a que todo el contenido del DOM esté cargado
 document.addEventListener('DOMContentLoaded', function() {
 
-  // 1. Configuración del selector de FECHA
   flatpickr("#fecha-evento", {
-    dateFormat: "d/m/Y", // Formato día/mes/año
-    placeholder: "dd/mm/aaaa", // El placeholder que se ve
+    dateFormat: "d/m/Y",
+    placeholder: "dd/mm/aaaa",
+    allowInput: false
   });
 
-  // 2. Configuración del selector de HORA
   flatpickr("#hora-inicio", {
-    enableTime: true,   // Activa la selección de hora
-    noCalendar: true,   // Desactiva el calendario, solo muestra la hora
-    dateFormat: "h:i K", // Formato 12 horas (h) con minutos (i) y AM/PM (K)
-    defaultHour: 18,      // Hora por defecto (6 PM)
+    enableTime: true, 
+    noCalendar: true,   
+    dateFormat: "h:i K", 
+    defaultHour: 18,      
     defaultMinute: 30,
-    placeholder: "06:30 p.m."
+    placeholder: "06:30 p.m.",
+    allowInput: false
   });
-  
-  // 3. (Opcional) Leer los datos al publicar
+
   const publicarBtn = document.querySelector('.btn-publicar');
   publicarBtn.addEventListener('click', () => {
     const nombre = document.getElementById('nombre').value;
@@ -25,8 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const hora = document.getElementById('hora-inicio').value;
     const capacidad = document.getElementById('capacidad').value;
     const esVisible = document.getElementById('visibilidad').checked;
+
+    if (!nombre) {
+      alert('Por favor, escribe un nombre para el evento.');
+      return; 
+    }
+    if (!fecha) {
+      alert('Por favor, selecciona una fecha.');
+      return; 
+    }
+    if (!hora) {
+      alert('Por favor, selecciona una hora de inicio.');
+      return; 
+    }
+    if (!capacidad || parseInt(capacidad) <= 0) {
+      alert('Por favor, define una capacidad válida.');
+      return;
+    }
     
-    console.log('--- Evento a Publicar ---');
+    console.log('Evento a Publicar Validado');
     console.log('Nombre:', nombre);
     console.log('Fecha:', fecha);
     console.log('Hora:', hora);

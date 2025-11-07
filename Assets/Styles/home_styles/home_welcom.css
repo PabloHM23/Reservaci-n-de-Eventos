@@ -16,9 +16,12 @@
 
 .info_main_e {
     width: 100%;
+    min-height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+    clip-path: inset(0 0 50% 0);
 }
 
 .info {
@@ -30,9 +33,12 @@
 }
 
 .info_e {
+    height: 50%;
     width: 100%;
+    overflow: hidden;
     max-width: 1500px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    clip-path: inset(0 0 50% 0);
 }
 
 .cont_img {
@@ -69,7 +75,6 @@
     height: -50%;
     object-fit: cover;
     z-index: 1;
-
 }
 
 .cont_img::after {
@@ -89,7 +94,7 @@
     top: 0;
     left: 0;
     width: 50%;
-    height: 50%;
+    height: 53.5%;
     background: rgba(0, 0, 0, 0.85);
     z-index: 2;
 }

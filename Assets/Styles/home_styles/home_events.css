@@ -10,6 +10,19 @@
     flex-grow: 1;
 }
 
+.info_main_2e {
+    display: block;
+    width: 100%;
+    padding: 0px;
+    max-width: 1500px;
+    margin: 0px 180px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(170, 168, 168, 1);
+    flex-grow: 1;
+    transform: translateY(-700%);
+}
+
 @media (max-width: 768px) {
     .info_main_2 {
         padding: 20px 15px;
