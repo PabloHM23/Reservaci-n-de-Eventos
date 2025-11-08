@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (esValido) {
             console.log("¡LOGIN VÁLIDO! Enviando al servidor...");
-            // ...
+
         } else {
             console.log("El formulario de login tiene errores.");
         }

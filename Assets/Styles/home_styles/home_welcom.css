@@ -240,3 +240,43 @@
         width: 100%;
     }
 }
+
+@media (max-width: 768px) {
+    .info_main_e{
+        height: 50%;
+        width: 100%;
+    }
+
+    .info_e{
+        width: 100%;
+        padding: 0px;
+        justify-content: space-between;
+    }
+
+    .cont_img_e::after {
+        width: 65%;
+        height: 37%;
+    }
+
+    .cont_img_e {
+        height: 500px;
+    }
+    
+    .info_img_e {
+        padding: 0px;
+        margin: 10px 20px 250px;
+    }
+    
+    .info_img_e h1 {
+        font-size: 1.2rem;
+    }
+    
+    .buttons {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .button_1, .button_2 {
+        width: 100%;
+    }
+}

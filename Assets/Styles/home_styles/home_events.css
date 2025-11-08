@@ -31,6 +31,15 @@
     }
 }
 
+@media (max-width: 768px) {
+    .info_main_2e { 
+        padding: 20px 15px;
+        margin: 0 auto;
+        border-bottom-width: 0.8px;
+        transform: translateY(-300%);
+    }
+}
+
 .event-cards-section {
     padding: 30px 10px;
     background-color: #ffffff;
