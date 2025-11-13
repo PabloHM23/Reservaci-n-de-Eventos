@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const input = icon.previousElementSibling;
 
-            const openEyeSrc = "Assets/img/pass2.png"; 
-            const closedEyeSrc = "Assets/img/pass.png";
+            //const openEyeSrc = "Assets/img/pass2.png"; 
+            //const closedEyeSrc = "Assets/img/pass.png";
 
             if (input.type === "password") {
                 input.type = "text";
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const input = icon.previousElementSibling;
 
-            const openEyeSrc = "Assets/img/pass2.png"; 
-            const closedEyeSrc = "Assets/img/pass.png";
+            //const openEyeSrc = "Assets/img/pass2.png"; 
+            //const closedEyeSrc = "Assets/img/pass.png";
 
             if (input.type === "password") {
                 input.type = "text";

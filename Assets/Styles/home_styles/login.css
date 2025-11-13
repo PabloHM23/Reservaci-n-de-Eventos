@@ -119,22 +119,9 @@ input.error-field {
     padding-right: 40px; 
 }
 
-.pass_icon {
-    position: fixed;
-    right: 5; 
-    top: 50.5%;
-    transform: translateY(-60%);
-    transform: translateX(-130%);
-    cursor: pointer;
-    width: 20px;
-}
-
 .pass_icon_2 {
-    position: fixed;
     right: 5; 
     top: 46%;
-    transform: translateY(-90%);
-    transform: translateX(-130%);
     cursor: pointer;
     width: 20px;
 }
