@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
     <script src="../Assets/Js/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/calendario.css">
     <title>Agora Calendario</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
@@ -40,11 +41,72 @@
         </nav>
     </div>
     <br>
-    <section class="img_event">
-            <div class="salon_info">
+    <div class="container">
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
                 <h1>Calendario</h1>
+                <div class="category-filter">
+                    <select id="category-select">
+                        <option>Categoría (Todas)</option>
+                        <option>Salón para eventos</option>
+                        <option>Auditorio</option>
+                        <option>Espacio al aire libre</option>
+                        <option>Sala de conferencias</option>
+                    </select>
+                </div>
             </div>
-    </section>
+
+            <div class="month-navigation">
+                <button class="nav-btn" id="prev-month">
+                    <span>‹</span> Mes anterior
+                </button>
+                <div class="current-month" id="current-month">Nov, 2025</div>
+                <button class="nav-btn" id="next-month">
+                    Mes siguiente <span>›</span>
+                </button>
+            </div>
+
+            <div class="calendar-grid">
+                <div class="weekday-header">Domingo</div>
+                <div class="weekday-header">Lunes</div>
+                <div class="weekday-header">Martes</div>
+                <div class="weekday-header">Miércoles</div>
+                <div class="weekday-header">Jueves</div>
+                <div class="weekday-header">Viernes</div>
+                <div class="weekday-header">Sábado</div>
+
+                <div id="calendar-days"></div>
+            </div>
+        </div>
+
+        <aside class="legend">
+            <h3>Leyenda</h3>
+            <div class="legend-item">
+                <span class="legend-color available"></span>
+                <span>Evento disponible</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color full"></span>
+                <span>Evento lleno</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color passed"></span>
+                <span>Evento pasado</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color cancelled"></span>
+                <span>Evento cancelado</span>
+            </div>
+        </aside>
+    </div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">&times;</button>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
     <br>
     <div id="footer">
         <footer class="footer">
@@ -68,5 +130,7 @@
             </div>
         </footer>
     </div>
+
+    <script src="../Assets/Js/calendario.js"></script>
 </body>
 </html>

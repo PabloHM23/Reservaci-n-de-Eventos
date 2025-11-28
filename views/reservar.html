@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
     <script src="../Assets/Js/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/reservar.css">
     <title>Agora Reservación</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
@@ -40,11 +41,41 @@
         </nav>
     </div>
     <br>
-    <section class="img_event">
-            <div class="salon_info">
-                <h1>Reservar Evento</h1>
+    <div class="container">
+        <div class="reservation-panel">
+            <h1 class="main-title">¡Haz tu reservación en minutos!</h1>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" value="" >
             </div>
-    </section>
+            
+            <div class="form-group">
+                <label for="espacios">Espacios reservados:</label>
+                <div class="number-control">
+                    <input type="number" id="espacios" value="" min="1" max="99">
+                    <div class="control-buttons">
+                        <button type="button" class="control-btn">▲</button>
+                        <button type="button" class="control-btn">▼</button>
+                    </div>
+                </div>
+                <span class="helper-text">Espacios disponibles: 01</span>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn-primary">Reservar lugares</button>
+                <button class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+        <div class="promo-panel">
+            <div class="promo-content">
+                <h2 class="promo-title">¡Reserva y disfruta lo mejor!</h2>
+                <p class="promo-text">Relájate un momento con tus amigos, familiares, pareja y quien tú quieras.</p>
+                <p class="promo-highlight">Solo aquí, en Agora</p>
+            </div>
+            <div class="promo-overlay"></div>
+        </div>
+    </div>
     <br>
         <div id="footer">
         <footer class="footer">

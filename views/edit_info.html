@@ -6,10 +6,12 @@
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/nav_footer.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_welcom.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
-    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
     <script src="../Assets/Js/home.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/details.css">
-    <title>Agora Deporte</title>
+    <script src="../Assets/Js/home.js"></script>
+    <script src="../Assets/Js/register.js"></script>
+    <script src="../Assets/Js/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/edit_perfil.css">
+    <title>Editar Perfil</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
 <body>
@@ -40,52 +42,33 @@
             </ul>
         </nav>
     </div>
-    <div class="container">
-        <header class="event-header">
-            <div class="event-header-content">
-                <h1 class="event-name">Evento Deportivo</h1>
-                <p class="event-category">Salón para eventos</p>
+    <br>
+    <h1>Actualiza tu Información</h1>
+
+    <div class="card">
+        <div class="avatar-container">
+            <svg class="avatar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" fill="white"/>
+                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#555"/>
+            </svg>
+        </div>
+        <div class="car_info">
+            <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre"><br>
+            <div class="error-txt"></div><label for="email-reg">Correo</label>
+            <input type="email" id="email-reg" name="email" placeholder="Ejem: correo@gmail.com">
+            <div class="error-txt"></div><label for="pass-reg">Contraseña</label>
+                                
+            <div class="password-wrapper">
+            <input type="password" id="pass-reg" name="pass-reg">
+            <!-- <img src="Assets/img/pass2.png" class="pass_icon"> -->
             </div>
-        </header>
 
-        <main class="event-content">
-            <section class="about-section">
-                <h2 class="section-title">Sobre el evento</h2>
-                <p class="section-text">
-                    Celebra tus momentos más importantes en un espacio diseñado para brillar.
-                </p>
-                <p class="section-text">
-                    Nuestro salón de eventos ofrece un ambiente moderno, versátil y totalmente equipado para bodas, conferencias, cumpleaños, graduaciones y cualquier ocasión especial.
-                </p>
-                <p class="section-text">
-                    Disfruta de amplias instalaciones, excelente iluminación y la comodidad que tus invitados merecen.
-                </p>
-            </section>
-
-            <section class="event-info">
-                <div class="info-row">
-                    <div class="info-item">
-                        <span class="info-label">Horario:</span>
-                        <span class="info-value">Martes 4 Nov - 10:00 a.m.</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Estado del evento:</span>
-                        <span class="status-badge active">Activo</span>
-                    </div>
-                </div>
-
-                <div class="info-row">
-                    <div class="info-item">
-                        <span class="info-label">Espacios:</span>
-                        <span class="info-value">23 / 30</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="action-section">
-                <button class="btn-reserve"><a href="../views/reservar.html">Reservar lugares</a></button>
-            </div>
-        </main>
+            <button type="button" class="btn-save"><a href="">Guardar Cambios</a></button>
+            <button type="button" class="btn-cancel"><a href="../views/perfil.html">Cancelar</a></button>
+        </form>
+        </div>
     </div>
     <br>
     <div id="footer">

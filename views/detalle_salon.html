@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
     <script src="../Assets/Js/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/details.css">
     <title>Agora Salón</title>
+    <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="nav">
@@ -38,12 +40,53 @@
             </ul>
         </nav>
     </div>
-    <section class="img_event">
-            <!--<img src="../Assets/img/salon_page.png">-->
-            <div class="salon_info">
-                <h2>Salón para Eventos</h2>
+    <div class="container">
+        <header class="event-header">
+            <div class="event-header-content">
+                <h1 class="event-name">Salón</h1>
+                <p class="event-category">Salón para eventos</p>
             </div>
-    </section>
+        </header>
+
+        <main class="event-content">
+            <section class="about-section">
+                <h2 class="section-title">Sobre el evento</h2>
+                <p class="section-text">
+                    Celebra tus momentos más importantes en un espacio diseñado para brillar.
+                </p>
+                <p class="section-text">
+                    Nuestro salón de eventos ofrece un ambiente moderno, versátil y totalmente equipado para bodas, conferencias, cumpleaños, graduaciones y cualquier ocasión especial.
+                </p>
+                <p class="section-text">
+                    Disfruta de amplias instalaciones, excelente iluminación y la comodidad que tus invitados merecen.
+                </p>
+            </section>
+
+            <section class="event-info">
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">Horario:</span>
+                        <span class="info-value">Martes 4 Nov - 10:00 a.m.</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Estado del evento:</span>
+                        <span class="status-badge active">Activo</span>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">Espacios:</span>
+                        <span class="info-value">23 / 30</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="action-section">
+                <button class="btn-reserve"><a href="../views/reservar.html">Reservar lugares</a></button>
+            </div>
+        </main>
+    </div>
     <br>
     <div id="footer">
         <footer class="footer">
