@@ -1,4 +1,0 @@
-Comando de localhost
-cd ~/Reservaci-n-de-Eventos-main
-php -S localhost:8000
-
