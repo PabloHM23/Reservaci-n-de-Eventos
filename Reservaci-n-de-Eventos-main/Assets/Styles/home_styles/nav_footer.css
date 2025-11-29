@@ -1,0 +1,309 @@
+*{
+  margin: 0;
+  padding: 0%;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body{
+  height: 100%;
+	width: 100%;
+  min-height: 100vh;
+}
+
+.nav {
+  background-color: rgba(48, 50, 61, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 70px;
+  width: auto;
+  position: relative;
+}
+
+ul{
+  display: inline-block;
+  gap: 80px;
+}
+
+li{
+  display: inline-block;
+  margin: 15px 20px;
+}
+
+.logo a{
+  color: white;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.nav-links a{
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+a{
+  color: white;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #4da3ff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.btn-registrarse {
+  margin-left: auto;
+  background-color: rgba(110, 113, 131, 1);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registrarse:hover {
+  background-color: #4f46e5;
+}
+
+@media (max-width: 800px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+}
+
+.nav_links {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.nav_links a{
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.btn-hamburger {
+  display: none;
+  font-size: 2.2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  
+  .nav {
+    padding: 20px 30px
+  }
+
+  .btn-hamburger {
+    display: block; 
+  }
+
+  .nav_links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: rgba(48, 50, 61, 1);
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 25px;
+  }
+  
+  .nav_links.open {
+    display: flex;
+  }
+
+  .nav-menus {
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    padding: 0;
+  }
+  
+  .menu {
+     width: 100%;
+     text-align: center;
+     margin: 0;
+  }
+
+  .btn-registrarse {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  ul {
+    gap: 0;
+    display: block;
+  }
+  li {
+    margin: 0;
+    display: block;
+  }
+}
+
+footer{
+  background-color: rgba(48, 50, 61, 1);
+  width: auto;
+  color: white;
+  padding: 20px 0px;
+  align-items: center;
+}
+
+.name {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 50px;
+  text-align: left;
+  background-color: rgba(48, 50, 61, 1);
+  flex: 1;
+  padding: 20px 10px;
+}
+
+.contact_info{
+  background-color: rgba(48, 50, 61, 1);
+  flex: 3;
+  text-align: center;
+  padding: 0px 20px;
+}
+
+.div_3{
+  background-color: rgba(48, 50, 61, 1);
+  flex: 1;
+  align-content: right;
+}
+
+.footer_content{
+  display: flex;
+  width: auto;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.contact_info > a {
+  color: blue;
+}
+
+@media (max-width: 768px) {
+  .footer_content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .name,
+  .contact_info,
+  .div_3 {
+    flex: none;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+}
+
+.nav-links a,
+.menu-btn {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit; 
+  padding: 10px 0; 
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links a::after,
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #4da3ff;
+  transition: width 0.3s ease;
+}
+
+.menu-btn[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+.nav-links a:hover::after,
+.menu-btn:hover::after {
+  width: 100%;
+  
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-content {
+  display: none; 
+  position: absolute;
+  background-color: rgba(48, 50, 61, 1);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999;
+  border-radius: 4px; 
+}
+
+.menu-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-content a:hover {
+  background-color: rgb(76, 79, 95);
+}
+
+.menu-content.show {
+  display: block;
+}

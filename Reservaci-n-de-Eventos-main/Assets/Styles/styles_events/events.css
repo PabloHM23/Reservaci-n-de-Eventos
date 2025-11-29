@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.img_event {
+    position: relative;
+    height: 70vh;
+    min-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_event::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.salon_info {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.salon_info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .salon_info h2 {
+        font-size: 2rem;
+    }
+            
+    .img_event {
+        height: 50vh;
+    }
+}
