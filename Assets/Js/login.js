@@ -87,6 +87,11 @@ function actualizarUIUsuario(user) {
     const btnLogin = document.querySelector('#abrirModalBtn');
     const btnRegistrarse = document.getElementById('btn_registrarse');
     
+function actualizarUIUsuario(user) {
+
+    window.location.reload();
+}
+
     if (btnLogin) btnLogin.style.display = 'none';
     if (btnRegistrarse) btnRegistrarse.style.display = 'none';
     
@@ -96,4 +101,6 @@ function actualizarUIUsuario(user) {
         userMenu.innerHTML = `<button class="menu-btn">Hola, ${user.nombre}</button>`;
         navMenus.appendChild(userMenu);
     }
+
+    
 }

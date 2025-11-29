@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.');
                 formRegistro.reset();
                 
-                // Cambiar a vista de login
+                // Cambiar a vista de login para que el usuario inicie sesión
                 document.getElementById('vistaRegistro').style.display = 'none';
                 document.getElementById('vistaLogin').style.display = 'block';
             } else {
