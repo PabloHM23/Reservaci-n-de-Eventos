@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../index.php'); // Redirige si no está logueado
+    header('Location: ../index.php');
     exit;
 }
 require_once '../php/conexion.php'; 
@@ -20,7 +20,6 @@ try {
         $user_name = htmlspecialchars($user_data['nombre']);
         $user_email = htmlspecialchars($user_data['correo_electronico']);
     } else {
-        // Esto no debería pasar si el user_id es válido
         $error_message = "Error: Usuario no encontrado.";
     }
 } catch (PDOException $e) {
@@ -28,6 +27,8 @@ try {
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,7 +90,7 @@ try {
             
             <form id="formEditInfo">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value="<?php echo $user_name; ?>" required><br>
+                <input type="text" id="nombre" class="Sololetras" name="nombre" value="<?php echo $user_name; ?>" required><br>
                 
                 <div class="error-txt" id="error-nombre"></div>
                 

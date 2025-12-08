@@ -2,6 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const formRegistro = document.getElementById('formRegistro');
     if (!formRegistro) return;
 
+    const input = document.getElementById("nombre");
+    input.addEventListener("keydown", Sololetras);
+
+function Sololetras(event){
+    const pressedkey = event.key;
+
+     const letters = [
+        ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        ..."abcdefghijklmnopqrstuvwxyz",
+        "á","é","í","ó","ú","ü",
+        "Á","É","Í","Ó","Ú","Ü",
+        "ñ","Ñ",
+        " " 
+    ];
+    const specialKeys = [
+        "Backspace",
+        "Delete",
+        "ArrowLeft",
+        "ArrowRight",
+        "Tab"
+    ]; 
+
+
+    if (!letters.includes(pressedkey) && !specialKeys.includes(pressedkey)) {
+        event.preventDefault();
+    }
+
+}
+
     formRegistro.addEventListener('submit', async (e) => {
         e.preventDefault();
         limpiarErrores();
@@ -82,8 +111,11 @@ function mostrarError(inputId, mensaje) {
     input.style.borderColor = 'red';
 }
 
+
 // Función para limpiar errores
 function limpiarErrores() {
     document.querySelectorAll('.error-txt').forEach(error => error.textContent = '');
     document.querySelectorAll('#formRegistro input').forEach(input => input.style.borderColor = '');
+
 }
+

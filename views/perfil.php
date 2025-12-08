@@ -1,10 +1,57 @@
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
     exit();
 }
+require_once '../php/conexion.php'; 
+$user_id = $_SESSION['user_id'];
+$reservations = [];
+$error_message = '';
+
+function format_reservation_date($date_str, $time_str) {
+    if (!$date_str) return '';
+    setlocale(LC_TIME, 'es_ES.utf8', 'es_ES', 'es');
+    $timestamp = strtotime($date_str);
+    $date_formatted = strftime('%A, %d de %B', $timestamp);
+    
+    return $date_formatted . ', ' . htmlspecialchars($time_str);
+}
+try {
+    $sql = "
+        SELECT 
+            e.id_evento, 
+            r.cupo,
+            r.fecha_inscripcion,
+            e.nombre_evento,
+            e.fecha AS event_date,
+            e.hora_inicio,
+            e.estado,
+            c.nombre_categoria
+        FROM 
+            Reservacion r
+        JOIN 
+            Evento e ON r.Evento_id_evento = e.id_evento
+        JOIN
+            Categoria c ON e.Categoria_id_Categoria = c.id_Categoria
+        WHERE 
+            r.Usuario_id_usuario = :user_id
+        ORDER BY 
+            e.fecha DESC, e.hora_inicio DESC
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':user_id' => $user_id]);
+    $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    $error_message = "Error al cargar tu historial de reservaciones: " . $e->getMessage();
+}
 ?>
+?>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,8 +137,46 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 
                 <div class="empty-state">
-                    <p>No tienes reservaciones actualmente</p>
+                    <?php if (empty($reservations)): ?>
+                <div class="no-reservations" style="text-align: center; padding: 30px; background-color: white; border-radius: 8px;">
+                    <p>Aún no tienes reservaciones activas. <a href="eventos.php" style="color: #4a5f8f; text-decoration: underline;">Explora eventos para reservar.</a></p>
                 </div>
+            <?php else: ?>
+                <?php foreach ($reservations as $reservation): 
+                    $event_title = htmlspecialchars($reservation['nombre_evento'] . ' - ' . $reservation['nombre_categoria']);
+                    $event_date_time = format_reservation_date($reservation['event_date'], $reservation['hora_inicio']);
+                    $event_status = $reservation['estado'];
+                ?>
+                <div class="reservation-card" data-status="<?php echo $event_status; ?>">
+                    <div class="reservation-info">
+                        <img src="https://placehold.co/100x100/4a5f8f/ffffff?text=<?php echo substr($reservation['nombre_categoria'], 0, 1); ?>" alt="<?php echo htmlspecialchars($reservation['nombre_categoria']); ?>" class="reservation-image">
+                        <div class="reservation-details">
+                            <h3 class="reservation-title"><?php echo $event_title; ?></h3>
+                            <p class="reservation-date"><?php echo $event_date_time; ?></p>
+                            <p class="status-label" style="color: <?php echo ($event_status === 'activo' ? 'green' : ($event_status === 'cancelado' ? 'red' : 'gray')); ?>;">
+                                Estado del Evento: <?php echo ucfirst($event_status); ?>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="reservation-spaces">
+                        <span class="spaces-count"><?php echo htmlspecialchars($reservation['cupo']); ?></span>
+                    </div>
+                    
+                    <div class="reservation-actions">
+                        <button class="Agregar-mas">
+                        <a href="/views/reservar.php#formulario-reserva">Agregar más</a>
+                        </button>
+
+                        <button class="btn-cancelar-res" data-event-id="<?php echo $reservation['id_evento']; ?>" 
+                            style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 13px">
+                        Cancelar reservación
+                        </button>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
                 
                 <div class="pagination">
                     <button class="pagination-btn" disabled>
@@ -137,5 +222,58 @@ if (!isset($_SESSION['user_id'])) {
         }
     }
     </script>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const botonesCancelar = document.querySelectorAll('.btn-cancelar-res');
+
+    botonesCancelar.forEach(boton => {
+        boton.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            // Confirmación para evitar clics accidentales
+            if(!confirm('¿Estás seguro de que deseas cancelar esta reservación? Los espacios quedarán libres para otros usuarios.')) {
+                return;
+            }
+
+            const eventId = this.getAttribute('data-event-id');
+            const btn = this;
+            
+            // Deshabilitar botón para evitar doble clic
+            btn.disabled = true;
+            btn.textContent = 'Cancelando...';
+
+            try {
+                const response = await fetch('../php/cancel_reservation.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ event_id: eventId })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Reservación cancelada exitosamente.');
+                    // Recargar la página para ver los cambios
+                    window.location.reload();
+                } else {
+                    alert('Error: ' + result.message);
+                    btn.disabled = false;
+                    btn.textContent = 'Cancelar reservación';
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error de conexión.');
+                btn.disabled = false;
+                btn.textContent = 'Cancelar reservación';
+            }
+        });
+    });
+});
+</script>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 </body>
 </html>

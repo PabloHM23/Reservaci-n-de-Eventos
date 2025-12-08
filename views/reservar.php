@@ -125,7 +125,7 @@ $max_reservable = $available_slots + $user_current_slots;
                     <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group" id="Reservar_espacios">
                     <label for="espacios">Espacios a reservar/modificar:</label>
                     <div class="number-control">
                         <input type="number" id="espacios" name="espacios" 

@@ -1,3 +1,4 @@
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -18,8 +19,9 @@ function format_reservation_date($date_str, $time_str) {
     return $date_formatted . ', ' . htmlspecialchars($time_str);
 }
 try {
-    $sql = "
+$sql = "
         SELECT 
+            e.id_evento, 
             r.cupo,
             r.fecha_inscripcion,
             e.nombre_evento,
@@ -47,6 +49,7 @@ try {
     $error_message = "Error al cargar tu historial de reservaciones: " . $e->getMessage();
 }
 ?>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +59,7 @@ try {
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_welcom.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
+
     <script src="../Assets/Js/home.js"></script>
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/history.css">
     <title>Agora Historial</title>
@@ -152,11 +156,13 @@ try {
                     </div>
                     
                     <div class="reservation-actions">
-                        <button class="actions-dropdown">
-                            Acciones
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                                <path d="M6 9L1 4h10z"/>
-                            </svg>
+                        <button class="Agregar-mas">
+                        <a href="/views/reservar.php#formulario-reserva">Agregar más</a>
+                        </button>
+
+                        <button class="btn-cancelar-res" data-event-id="<?php echo $reservation['id_evento']; ?>" 
+                        style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 13px">
+                        Cancelar reservación
                         </button>
                     </div>
                 </div>
@@ -199,4 +205,56 @@ try {
         </footer>
     </div>
 </body>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const botonesCancelar = document.querySelectorAll('.btn-cancelar-res');
+
+    botonesCancelar.forEach(boton => {
+        boton.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            if(!confirm('¿Estás seguro de que deseas cancelar esta reservación? Los espacios quedarán libres para otros usuarios.')) {
+                return;
+            }
+
+            const eventId = this.getAttribute('data-event-id');
+            const btn = this;
+            
+            btn.disabled = true;
+            btn.textContent = 'Cancelando...';
+
+            try {
+                const response = await fetch('../php/cancel_reservation.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ event_id: eventId })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Reservación cancelada exitosamente.');
+                    // Recargar la página para ver los cambios
+                    window.location.reload();
+                } else {
+                    alert('Error: ' + result.message);
+                    btn.disabled = false;
+                    btn.textContent = 'Cancelar reservación';
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error de conexión.');
+                btn.disabled = false;
+                btn.textContent = 'Cancelar reservación';
+            }
+        });
+    });
+});
+</script>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
 </html>

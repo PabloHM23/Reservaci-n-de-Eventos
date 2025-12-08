@@ -1,9 +1,9 @@
 <?php
 // Datos de conexión
-$host = 'localhost';
-$db   = 'sistema_eventos';
-$user = 'pepe';
-$pass = '12345';
+$host = 'sql210.infinityfree.com';
+$db   = 'if0_40436864_sistema_eventos';
+$user = 'if0_40436864';
+$pass = 'T5PZ7TnSmp1Pzi';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -15,9 +15,7 @@ $options = [
 
 try {
      $pdo = new PDO($dsn, $user, $pass, $options);
-     // 🛑 ¡ASEGÚRATE DE QUE NO HAY NINGÚN 'ECHO' AQUÍ!
 } catch (\PDOException $e) {
-     // Esto maneja el error de conexión
      die("Error de conexión PDO: " . $e->getMessage());
 }
 ?>

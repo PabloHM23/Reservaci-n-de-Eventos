@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "sistema_eventos";
-    private $username = "pepe";
-    private $password = "12345";
+    private $host = "sql210.infinityfree.com";
+    private $db_name = "if0_40436864_sistema_eventos";
+    private $username = "if0_40436864";
+    private $password = "T5PZ7TnSmp1Pzi";
     private $conn;
 
     public function getConnection() {
