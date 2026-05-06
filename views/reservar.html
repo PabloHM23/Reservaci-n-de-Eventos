@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +9,14 @@
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
     <script src="../Assets/Js/home.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/details.css">
-    <title>Agora Salón</title>
+    <script src="../Assets/Js/reservar.js"></script> 
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/reservar.css">
+    <title>Agora Reservación</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="nav">
-        <div class="logo"><a href="../index.php"><img src="../Assets/img/title.png"></a></div>
+        <div class="logo"><a href="../index.html"><img src="../Assets/img/title.png"></a></div>
         <nav class="nav_links">
             <ul class="nav-menus">
                 <li class="menu">
@@ -40,52 +42,54 @@
             </ul>
         </nav>
     </div>
+    <br>
     <div class="container">
-        <header class="event-header">
-            <div class="event-header-content">
-                <h1 class="event-name">Salón</h1>
-                <p class="event-category">Salón para eventos</p>
-            </div>
-        </header>
-
-        <main class="event-content">
-            <section class="about-section">
-                <h2 class="section-title">Sobre el evento</h2>
-                <p class="section-text">
-                    Celebra tus momentos más importantes en un espacio diseñado para brillar.
-                </p>
-                <p class="section-text">
-                    Nuestro salón de eventos ofrece un ambiente moderno, versátil y totalmente equipado para bodas, conferencias, cumpleaños, graduaciones y cualquier ocasión especial.
-                </p>
-                <p class="section-text">
-                    Disfruta de amplias instalaciones, excelente iluminación y la comodidad que tus invitados merecen.
-                </p>
-            </section>
-
-            <section class="event-info">
-                <div class="info-row">
-                    <div class="info-item">
-                        <span class="info-label">Horario:</span>
-                        <span class="info-value">Martes 4 Nov - 10:00 a.m.</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Estado del evento:</span>
-                        <span class="status-badge active">Activo</span>
-                    </div>
+        <form id="reservationForm">
+            <div class="reservation-panel">
+                <h1 class="main-title">Reservación: Concierto de Jazz</h1>
+                <p class="subtitle" style="margin-bottom: 20px;">Disfruta de una experiencia inolvidable con los mejores artistas de jazz en vivo.</p>
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="Juan Pérez" readonly>
                 </div>
-
-                <div class="info-row">
-                    <div class="info-item">
-                        <span class="info-label">Espacios:</span>
-                        <span class="info-value">23 / 30</span>
+                
+                <div class="form-group" id="Reservar_espacios">
+                    <label for="espacios">Espacios a reservar/modificar:</label>
+                    <div class="number-control">
+                        <input type="number" id="espacios" name="espacios" 
+                            value="1" 
+                            min="1" 
+                            max="5" 
+                            data-current-slots="0"
+                            required>
+                        <div class="control-buttons">
+                            <button type="button" class="control-btn" data-action="increment">▲</button>
+                            <button type="button" class="control-btn" data-action="decrement">▼</button>
+                        </div>
                     </div>
+                    <span class="error-txt" id="error-espacios"></span>
+                    <span class="helper-text" id="helper-text">
+                        Lugares disponibles: 5. Capacidad máxima: 150.
+                    </span>
                 </div>
-            </section>
-
-            <div class="action-section">
-                <button class="btn-reserve"><a href="../views/reservar.html">Reservar lugares</a></button>
+                
+                <div class="action-buttons">
+                    <button type="submit" id="btnReservar" class="btn-primary">
+                        Reservar lugares
+                    </button>
+                    <button type="button" class="btn-secondary" onclick="window.location.href='eventos.html'">Cancelar</button>
+                </div>
             </div>
-        </main>
+        </form>
+        <div class="promo-panel">
+            <div class="promo-content">
+                <h2 class="promo-title">¡Reserva y disfruta lo mejor!</h2>
+                <p class="promo-text">Relájate un momento con tus amigos, familiares, pareja y quien tú quieras.</p>
+                <p class="promo-highlight">Solo aquí, en Agora</p>
+            </div>
+            <div class="promo-overlay"></div>
+        </div>
     </div>
     <br>
     <div id="footer">

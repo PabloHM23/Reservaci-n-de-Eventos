@@ -1,55 +1,3 @@
-<?php
-session_start();
-
-require_once '../php/conexion.php'; 
-
-$events = [];
-$error_message = '';
-
-function format_event_date_time($date_str, $time_str) {
-    if (!$date_str) return '';
-    setlocale(LC_TIME, 'es_ES.utf8', 'es_ES', 'es');
-    $timestamp = strtotime($date_str);
-    $date_formatted = strftime('%A, %d de %B de %Y', $timestamp);
-    
-    $time_12h = date('h:i a', strtotime($time_str));
-    
-    return $date_formatted . ' a las ' . strtolower($time_12h);
-}
-
-try {
-    $sql = "
-        SELECT 
-            e.id_evento,
-            e.nombre_evento,
-            e.descripcion,
-            e.fecha,
-            e.hora_inicio,
-            e.capacidad_max,
-            c.nombre_categoria,
-            COALESCE(SUM(r.cupo), 0) AS cupos_ocupados
-        FROM 
-            Evento e
-        JOIN 
-            Categoria c ON e.Categoria_id_Categoria = c.id_Categoria
-        LEFT JOIN 
-            Reservacion r ON e.id_evento = r.Evento_id_evento
-        WHERE
-            e.estado = 'activo' AND e.fecha >= CURDATE()
-        GROUP BY 
-            e.id_evento
-        ORDER BY 
-            e.fecha ASC, e.hora_inicio ASC
-    ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-    $error_message = "Error al cargar los eventos: " . $e->getMessage();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,53 +167,103 @@ try {
     </section>
     
     <div class="container">
-        <?php if ($error_message): ?>
-            <div class="error-message" style="text-align: center; padding: 20px; color: red;">
-                Error: <?php echo $error_message; ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (empty($events)): ?>
-            <div class="no-events-message">
-                <p>No hay eventos próximos disponibles para reservar.</p>
-            </div>
-        <?php else: ?>
-            <div class="events-grid">
-                <?php foreach ($events as $event): 
-                    $cupos_disponibles = $event['capacidad_max'] - $event['cupos_ocupados'];
-                    $es_lleno = $cupos_disponibles <= 0;
-                    $capacidad_clase = $es_lleno ? 'full' : 'available';
-                ?>
-                <div class="event-card">
-                    <div class="card-image-placeholder">
-                        <?php echo htmlspecialchars(substr($event['nombre_categoria'], 0, 1)); ?>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-category"><?php echo htmlspecialchars($event['nombre_categoria']); ?></p>
-                        <h3 class="card-title"><?php echo htmlspecialchars($event['nombre_evento']); ?></h3>
-                        <p class="card-description"><?php echo htmlspecialchars($event['descripcion'] ?? 'Evento sin descripción detallada.'); ?></p>
-                        
-                        <div class="card-footer">
-                            <p class="card-date-time">
-                                <?php echo format_event_date_time($event['fecha'], $event['hora_inicio']); ?>
-                            </p>
-                            <p class="card-capacity <?php echo $capacidad_clase; ?>">
-                                Cupos: <?php echo $cupos_ocupados . ' / ' . $event['capacidad_max']; ?>
-                            </p>
-                        </div>
-                        
-                        <a 
-                            href="reservar.php?event_id=<?php echo $event['id_evento']; ?>" 
-                            class="card-button"
-                            <?php if ($es_lleno): ?> disabled style="opacity: 0.6; cursor: not-allowed;" <?php endif; ?>
-                        >
-                            <?php echo $es_lleno ? 'Agotado' : '¡Reservar ahora!'; ?>
-                        </a>
-                    </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    C
                 </div>
-                <?php endforeach; ?>
+                <div class="card-content">
+                    <p class="card-category">Conciertos</p>
+                    <h3 class="card-title">Concierto de Jazz</h3>
+                    <p class="card-description">Disfruta de una noche inolvidable con los mejores artistas de jazz en vivo. Música, baile y buena compañía en un ambiente único.</p>
+                    
+                    <div class="card-footer">
+                        <p class="card-date-time">
+                            sábado, 15 de diciembre de 2024 a las 08:00 pm
+                        </p>
+                        <p class="card-capacity available">
+                            Cupos: 45 / 150
+                        </p>
+                    </div>
+                    
+                    <a href="reservar.php?event_id=1" class="card-button">
+                        ¡Reservar ahora!
+                    </a>
+                </div>
             </div>
-        <?php endif; ?>
+
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    B
+                </div>
+                <div class="card-content">
+                    <p class="card-category">Bodas</p>
+                    <h3 class="card-title">Boda de Ana y Carlos</h3>
+                    <p class="card-description">Celebra el amor con nosotros en una boda mágica llena de romance, música y momentos inolvidables.</p>
+                    
+                    <div class="card-footer">
+                        <p class="card-date-time">
+                            domingo, 22 de diciembre de 2024 a las 04:00 pm
+                        </p>
+                        <p class="card-capacity available">
+                            Cupos: 80 / 200
+                        </p>
+                    </div>
+                    
+                    <a href="reservar.php?event_id=2" class="card-button">
+                        ¡Reservar ahora!
+                    </a>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    A
+                </div>
+                <div class="card-content">
+                    <p class="card-category">Arte y Cultura</p>
+                    <h3 class="card-title">Exposición de Arte Moderno</h3>
+                    <p class="card-description">Descubre las obras más innovadoras de artistas contemporáneos en esta exposición única.</p>
+                    
+                    <div class="card-footer">
+                        <p class="card-date-time">
+                            viernes, 10 de enero de 2025 a las 07:00 pm
+                        </p>
+                        <p class="card-capacity available">
+                            Cupos: 25 / 100
+                        </p>
+                    </div>
+                    
+                    <a href="reservar.php?event_id=3" class="card-button">
+                        ¡Reservar ahora!
+                    </a>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    D
+                </div>
+                <div class="card-content">
+                    <p class="card-category">Deportes</p>
+                    <h3 class="card-title">Torneo de Fútbol</h3>
+                    <p class="card-description">Vive la emoción del fútbol con equipos locales compitiendo por el campeonato.</p>
+                    
+                    <div class="card-footer">
+                        <p class="card-date-time">
+                            sábado, 18 de enero de 2025 a las 03:00 pm
+                        </p>
+                        <p class="card-capacity full">
+                            Cupos: 50 / 50
+                        </p>
+                    </div>
+                    
+                    <a href="reservar.php?event_id=4" class="card-button" disabled style="opacity: 0.6; cursor: not-allowed;">
+                        Agotado
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     <br>
     <div id="footer">
@@ -290,5 +288,7 @@ try {
             </div>
         </footer>
     </div>
+</body>
+</html>
 </body>
 </html>

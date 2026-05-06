@@ -1,55 +1,3 @@
-<?php
-session_start();
-
-require_once 'php/conexion.php'; 
-
-$events = [];
-$error_message = '';
-
-function format_event_date_time($date_str, $time_str) {
-    if (!$date_str) return '';
-    setlocale(LC_TIME, 'es_ES.utf8', 'es_ES', 'es');
-    $timestamp = strtotime($date_str);
-    $date_formatted = strftime('%A, %d de %B de %Y', $timestamp);
-    
-    $time_12h = date('h:i a', strtotime($time_str));
-    
-    return $date_formatted . ' a las ' . strtolower($time_12h);
-}
-
-try {
-    $sql = "
-        SELECT 
-            e.id_evento,
-            e.nombre_evento,
-            e.descripcion,
-            e.fecha,
-            e.hora_inicio,
-            e.capacidad_max,
-            c.nombre_categoria,
-            COALESCE(SUM(r.cupo), 0) AS cupos_ocupados
-        FROM 
-            Evento e
-        JOIN 
-            Categoria c ON e.Categoria_id_Categoria = c.id_Categoria
-        LEFT JOIN 
-            Reservacion r ON e.id_evento = r.Evento_id_evento
-        WHERE
-            e.estado = 'activo' AND e.fecha >= CURDATE()
-        GROUP BY 
-            e.id_evento
-        ORDER BY 
-            e.fecha ASC, e.hora_inicio ASC
-    ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-    $error_message = "Error al cargar los eventos: " . $e->getMessage();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +36,7 @@ try {
             transform: translateY(-5px);
         }
         .card-image-placeholder {
-            height: 180px;
+            height: 70px;
             background-color: #4a5f8f;
             color: white;
             display: flex;
@@ -97,6 +45,13 @@ try {
             font-size: 4rem;
             font-weight: bold;
         }
+
+        .card-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .card-content {
             padding: 15px;
             display: flex;
@@ -189,7 +144,7 @@ try {
 </head>
 <body>
     <div class="nav">
-        <div class="logo"><a href="index.php"><img src="Assets/img/title.png" alt=""></a></div>
+        <div class="logo"><a href="index.html"><img src="Assets/img/title.png" alt=""></a></div>
         <nav class="nav_links">
             <ul class="nav-menus">
                 <li class="menu">
@@ -197,9 +152,9 @@ try {
                         Eventos ▾
                     </button>
                     <div class="menu-content">
-                        <a href="views/eventos.php">Eventos próximos y pasados</a>
-                        <a href="views/crear_evento.php">Crear un evento</a>
-                        <a href="views/mi_evento.php">Mis eventos</a>
+                        <a href="views/eventos.html">Eventos próximos y pasados</a>
+                        <a href="views/crear_evento.html">Crear un evento</a>
+                        <a href="views/mi_evento.html">Mis eventos</a>
                     </div>
                 </li>
                 <li class="menu">
@@ -207,28 +162,16 @@ try {
                         Reservaciones ▾
                     </button>
                     <div class="menu-content">
-                        <a href="views/reservar.php">Reservar evento</a>
-                        <a href="views/historial_r.php">Historial de reservaciones</a>
+                        <a href="views/reservar.html">Reservar evento</a>
+                        <a href="views/historial_r.html">Historial de reservaciones</a>
                     </div>
                 </li>
-                <li><button class="menu-btn"><a href="views/calendario.php">Calendario</a></button></li>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li>
-                                                <a href="views/perfil.php" class="user-welcome-link">
-                            <button class="menu-btn user-welcome">
-                                Hola, <?php echo htmlspecialchars($_SESSION['user_name']); ?>
-                            </button>
-                        </a>
-                    </li>
-                <?php else: ?>
+                <li><button class="menu-btn"><a href="views/calendario.html">Calendario</a></button></li>
                     <li>
                         <button id="abrirModalBtn" class="btn menu-btn">Iniciar sesión</button>
                     </li>
-                <?php endif; ?>
             </ul>
-            <?php if (!isset($_SESSION['user_id'])): ?>
                 <button id="btn_registrarse" class="btn-registrarse">Registrarse</button>
-            <?php endif; ?>
             
             <div id="miModal" class="modal">
                 <div class="modal-contenido">
@@ -293,8 +236,8 @@ try {
                         <li>Gestión amigable: Gestiona y administra tus eventos.</li>
                     </ul>
                     <div class="buttons">
-                        <button class="button_1"><a href="views/crear_evento.php">Empieza a crear tu evento ahora</a></button>
-                        <button class="button_2"><a href="views/eventos.php">Explorar Eventos</a></button>
+                        <button class="button_1"><a href="views/crear_evento.html">Empieza a crear tu evento ahora</a></button>
+                        <button class="button_2"><a href="views/eventos.html">Explorar Eventos</a></button>
                     </div>
                 </div>
             </div>
@@ -311,57 +254,56 @@ try {
     <!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <!-- Cargar eventos que existan: -->
     <section class="event-cards-section">
-        <?php if ($error_message): ?>
-            <div class="error-message" style="text-align: center; padding: 20px; color: red;">
-                Error: <?php echo $error_message; ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (empty($events)): ?>
-            <div class="no-events-message">
-                <p>No hay eventos próximos disponibles para reservar.</p>
-            </div>
-        <?php else: ?>
-            <div class="events-grid">
-                <?php foreach ($events as $event): 
-                    $cupos_disponibles = $event['capacidad_max'] - $event['cupos_ocupados'];
-                    $es_lleno = $cupos_disponibles <= 0;
-                    $capacidad_clase = $es_lleno ? 'full' : 'available';
-                ?>
-                <div class="event-card">
-                    <div class="card-image-placeholder">
-                        <?php echo htmlspecialchars(substr($event['nombre_categoria'], 0, 1)); ?>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-category"><?php echo htmlspecialchars($event['nombre_categoria']); ?></p>
-                        <h3 class="card-title"><?php echo htmlspecialchars($event['nombre_evento']); ?></h3>
-                        <p class="card-description"><?php echo htmlspecialchars($event['descripcion'] ?? 'Evento sin descripción detallada.'); ?></p>
-                        
-                        <div class="card-footer">
-                            <p class="card-date-time">
-                                <?php echo format_event_date_time($event['fecha'], $event['hora_inicio']); ?>
-                            </p>
-                            <p class="card-capacity <?php echo $capacidad_clase; ?>">
-                                Cupos: <?php echo $event['cupos_ocupados'] . ' / ' . $event['capacidad_max']; ?>
-                            </p>
-                        </div>
-                        
-                        <a 
-                            href="views/reservar.php?event_id=<?php echo $event['id_evento']; ?>" 
-                            class="card-button"
-                            <?php if ($es_lleno): ?> style="opacity: 0.6; cursor: not-allowed; pointer-events: none;" <?php endif; ?>
-                        >
-                            <?php echo $es_lleno ? 'Agotado' : '¡Reservar ahora!'; ?>
-                        </a>
-                    </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    <img src="Assets/img/tag_concert.png" alt="Noche de Jazz">
                 </div>
-                <?php endforeach; ?>
+                <div class="card-content">
+                    <p class="card-category">Concierto</p>
+                    <h3 class="card-title">Noche de Jazz</h3>
+                    <p class="card-description">Disfruta de una velada con grandes artistas y buena música en vivo.</p>
+                    <div class="card-footer">
+                        <p class="card-date-time">Sábado, 15 de junio de 2025 a las 08:00 pm</p>
+                        <p class="card-capacity available">Cupos: 120 / 150</p>
+                    </div>
+                    <a href="views/reservar.html" class="card-button">¡Reservar ahora!</a>
+                </div>
             </div>
-            
-            <div class="ver-mas-btn">
-                <a href="views/eventos.php">Ver todos los eventos →</a>
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    <img src="Assets/img/tag_conf.png" alt="Innovación Digital 2025">
+                </div>
+                <div class="card-content">
+                    <p class="card-category">Conferencia</p>
+                    <h3 class="card-title">Innovación Digital 2025</h3>
+                    <p class="card-description">Explora las últimas tendencias tecnológicas junto a expertos del sector.</p>
+                    <div class="card-footer">
+                        <p class="card-date-time">Miércoles, 20 de mayo de 2025 a las 10:00 am</p>
+                        <p class="card-capacity available">Cupos: 60 / 80</p>
+                    </div>
+                    <a href="views/reservar.html" class="card-button">¡Reservar ahora!</a>
+                </div>
             </div>
-        <?php endif; ?>
+            <div class="event-card">
+                <div class="card-image-placeholder">
+                    <img src="Assets/img/tag_boda.png" alt="Celebración Elegante">
+                </div>
+                <div class="card-content">
+                    <p class="card-category">Boda</p>
+                    <h3 class="card-title">Celebración Elegante</h3>
+                    <p class="card-description">Un evento exclusivo para parejas que buscan un espacio inolvidable.</p>
+                    <div class="card-footer">
+                        <p class="card-date-time">Domingo, 30 de mayo de 2025 a las 05:00 pm</p>
+                        <p class="card-capacity full">Cupos: 100 / 100</p>
+                    </div>
+                    <a href="views/reservar.html" class="card-button" style="opacity: 0.6; cursor: not-allowed; pointer-events: none;">Agotado</a>
+                </div>
+            </div>
+        </div>
+        <div class="ver-mas-btn">
+            <a href="views/eventos.html">Ver todos los eventos →</a>
+        </div>
     </section>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <br>
