@@ -219,3 +219,130 @@ input:checked + .slider:before {
 .btn-cancelar:hover {
   background-color: #c53030;
 }
+
+/* Estilos para carga de imagen */
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.image-upload-btn {
+  width: 100%;
+  cursor: pointer;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  background-color: #FFF;
+  border: 2px dashed #D1D5DB;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.upload-placeholder:hover {
+  border-color: #4A90E2;
+  background-color: #f0f4ff;
+}
+
+.upload-placeholder svg {
+  color: #6B7280;
+}
+
+.upload-placeholder p {
+  font-size: 0.9rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+#image-preview {
+  width: 100%;
+  max-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+#preview-img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+/* Estilos para itinerario */
+.itinerario-hint {
+  font-size: 0.85rem;
+  color: black;
+  margin-bottom: 16px;
+
+}
+
+.seccion-itinerario {
+  background-color: rgba(98, 113, 134, 1);
+  color: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.seccion-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+}
+
+.btn-eliminar-seccion {
+  background-color: #E53E3E;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-eliminar-seccion:hover {
+  background-color: #c53030;
+}
+
+.btn-agregar-seccion {
+  width: 100%;
+  background-color: rgba(224, 152, 50, 1);
+  color: white;
+  padding: 12px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-agregar-seccion:hover {
+  background-color: #c7801a;
+}
