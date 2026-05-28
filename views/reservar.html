@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +10,182 @@
     <script src="../Assets/Js/home.js"></script>
     <script src="../Assets/Js/reservar.js"></script> 
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/reservar.css">
-    <title>Agora Reservación</title>
+    <title>Agora - Detalles del Evento</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
+
+    <style>
+        /* Banner Principal del Evento */
+        .event-hero {
+            width: 100%;
+            height: 250px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../Assets/img/america_chivas_bg.jpg'); /* Cambia la URL a tu imagen */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .event-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .event-hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contenedor Principal a dos columnas */
+        .event-details-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Columna izquierda más ancha */
+            gap: 50px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Columna Izquierda (Información) */
+        .event-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .event-info > p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .info-item h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .status-badge {
+            background-color: #4ade80;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Itinerario */
+        .itinerary-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .itinerary-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            font-size: 0.95rem;
+        }
+
+        /* Columna Derecha (Sidebar) */
+        .event-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .map-box {
+            background-color: #d9d9d9;
+            height: 250px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-align: center;
+        }
+
+        .btn-tickets {
+            background-color: #eab308; /* Color naranja/mostaza */
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-tickets:hover {
+            background-color: #ca9a04;
+        }
+
+        /* ----- ESPACIO RESERVADO PARA BANNER DE PROMOCIÓN ----- */
+        .promo-ad-space {
+            background-color: #262626; /* Fondo oscuro tipo comentario */
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 180px; /* Altura similar al cuadro de comentario original */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a3a3a3;
+            text-align: center;
+            border: 1px dashed #555; /* Borde punteado para identificar que es un placeholder */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Si luego insertas una imagen dentro del espacio, esta regla la ajustará */
+        .promo-ad-space img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Responsividad móvil */
+        @media (max-width: 768px) {
+            .event-details-layout {
+                grid-template-columns: 1fr; /* Pasa a una sola columna */
+            }
+            .info-grid {
+                grid-template-columns: 1fr; /* Elementos informativos en una columna */
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="nav">
-        <div class="logo"><a href="../index.html"><img src="../Assets/img/title.png"></a></div>
+        <div class="logo"><a href="../index.html"><img src="../Assets/img/title.png" alt="Logo"></a></div>
         <nav class="nav_links">
             <ul class="nav-menus">
                 <li class="menu">
@@ -24,90 +193,98 @@
                         Eventos ▾
                     </button>
                     <div class="menu-content">
-                        <a href="eventos.html">Eventos próximos y pasados</a>
+                        <!--a href="eventos.html">Eventos próximos y pasados</a-->
                         <a href="crear_evento.html">Crear un evento</a>
                         <a href="mi_evento.html">Mis eventos</a>
                     </div>
                 </li>
                 <li class="menu">
                     <button id="btn" class="menu-btn" aria-haspopup="true" aria-expanded="false">
-                        Reservaciones ▾
+                        Mis Reservaciones
                     </button>
-                    <div class="menu-content">
+                    <!--div class="menu-content">
                         <a href="reservar.html">Reservar evento</a>
                         <a href="historial_r.html">Historial de reservaciones</a>
-                    </div>
+                    </div-->
                 </li>
                 <li><button class="menu-btn"><a href="calendario.html">Calendario</a></button></li>
             </ul>
         </nav>
     </div>
-    <br>
-    <div class="container">
-        <form id="reservationForm">
-            <div class="reservation-panel">
-                <h1 class="main-title">Reservación: Concierto de Jazz</h1>
-                <p class="subtitle" style="margin-bottom: 20px;">Disfruta de una experiencia inolvidable con los mejores artistas de jazz en vivo.</p>
-                
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="Juan Pérez" readonly>
+
+    <div class="event-hero">
+        <h1>América vs Chivas</h1>
+        <p>Partido deportivo</p>
+    </div>
+
+    <div class="event-details-layout">
+        
+        <div class="event-info">
+            <h2>Sobre el evento</h2>
+            <p>El Clásico Nacional regresa con toda la intensidad. América y Chivas se enfrentan en uno de los duelos más apasionantes del fútbol mexicano, donde la rivalidad, la pasión y el orgullo se viven en cada jugada. No te pierdas este espectáculo dentro y fuera del campo.</p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>📅 Fecha</h4>
+                    <p>Martes 4 Nov, 2025</p>
                 </div>
-                
-                <div class="form-group" id="Reservar_espacios">
-                    <label for="espacios">Espacios a reservar/modificar:</label>
-                    <div class="number-control">
-                        <input type="number" id="espacios" name="espacios" 
-                            value="1" 
-                            min="1" 
-                            max="5" 
-                            data-current-slots="0"
-                            required>
-                        <div class="control-buttons">
-                            <button type="button" class="control-btn" data-action="increment">▲</button>
-                            <button type="button" class="control-btn" data-action="decrement">▼</button>
-                        </div>
-                    </div>
-                    <span class="error-txt" id="error-espacios"></span>
-                    <span class="helper-text" id="helper-text">
-                        Lugares disponibles: 5. Capacidad máxima: 150.
-                    </span>
+                <div class="info-item">
+                    <h4>🕒 Horario</h4>
+                    <p>05:00 pm - 09:00 pm</p>
                 </div>
-                
-                <div class="action-buttons">
-                    <button type="submit" id="btnReservar" class="btn-primary">
-                        Reservar lugares
-                    </button>
-                    <button type="button" class="btn-secondary" onclick="window.location.href='eventos.html'">Cancelar</button>
+                <div class="info-item">
+                    <h4>👥 Espacios</h4>
+                    <p>40 / 54 espacios libres</p>
+                </div>
+                <div class="info-item">
+                    <h4>ℹ️ Estado</h4>
+                    <p><span class="status-badge">Activo</span></p>
+                </div>
+                <div class="info-item" style="grid-column: 1 / -1;">
+                    <h4>📍 Ubicación</h4>
+                    <p>Estadio del Pueblo, Av. Insurgentes 123, La Paz, B.C.S.</p>
                 </div>
             </div>
-        </form>
-        <div class="promo-panel">
-            <div class="promo-content">
-                <h2 class="promo-title">¡Reserva y disfruta lo mejor!</h2>
-                <p class="promo-text">Relájate un momento con tus amigos, familiares, pareja y quien tú quieras.</p>
-                <p class="promo-highlight">Solo aquí, en Agora</p>
+
+            <h2>Itinerario</h2>
+            <div class="itinerary-list">
+                <div class="itinerary-item"><span>05:00 pm</span><span>Apertura</span></div>
+                <div class="itinerary-item"><span>05:30 pm</span><span>Himnos</span></div>
+                <div class="itinerary-item"><span>06:00 pm</span><span>Inicio del partido</span></div>
+                <div class="itinerary-item"><span>06:45 pm</span><span>Medio tiempo</span></div>
+                <div class="itinerary-item"><span>07:00 pm</span><span>Devuelta al partido</span></div>
+                <div class="itinerary-item"><span>07:45 pm</span><span>Fin del partido</span></div>
+                <div class="itinerary-item"><span>08:15 pm</span><span>Comentarios</span></div>
+                <div class="itinerary-item"><span>08:45 pm</span><span>Clausura del partido</span></div>
             </div>
-            <div class="promo-overlay"></div>
         </div>
+
+        <div class="event-sidebar">
+            <div class="map-box">
+                Vista de mapa -<br>Google Maps
+            </div>
+            
+            <button class="btn-tickets" onclick="window.location.href='reservar.html'">Ver boletos</button>
+
+            <div class="promo-ad-space">
+                <span>Espacio reservado para<br>Banner Promocional</span>
+                </div>
+        </div>
+
     </div>
     <br>
+
     <div id="footer">
         <footer class="footer">
             <div class="footer_content">
                 <div class="name">
-                    <img src="../Assets/img/title.png">
+                    <img src="../Assets/img/title.png" alt="Logo">
                 </div>
                 <div class="contact_info">
-                    Contáctanos 
-                    <br>
-                    Av. Calle falso #1234
-                    <br>
-                    <a href="mailto: Agoraeventos@correofalso.com">Agoraeventos@correofalso.com</a>
-                    <br>
-                    012 000 45-150 
-                    <br>
-                    <br>
+                    Contáctanos <br>
+                    Av. Calle falso #1234 <br>
+                    <a href="mailto:Agoraeventos@correofalso.com">Agoraeventos@correofalso.com</a> <br>
+                    012 000 45-150 <br><br>
                     © 2025 Agora Todos los derechos reservados.
                 </div>
                 <div class="div_3"></div>
