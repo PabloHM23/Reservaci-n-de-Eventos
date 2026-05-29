@@ -41,7 +41,7 @@
             </ul>
         </nav>
     </div>
-    <br>
+    <br> <!-- Espacio para el contenido principal -->
     <div class="form-container">
         <div class="form-header">
             <h2>Crea tu evento con nosotros</h2>
@@ -76,6 +76,29 @@
                     <label for="descripcion">Descripción</label>
                     <textarea id="descripcion" name="descripcion" rows="5"></textarea>
                     <div class="error-txt" id="error-descripcion"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Imagen del evento</h3>
+                <div class="form-group">
+                    <label for="imagen-evento">Cargar imagen</label>
+                    <div class="image-upload-container">
+                        <input type="file" id="imagen-evento" name="imagen-evento" accept="image/*" style="display: none;">
+                        <label for="imagen-evento" class="image-upload-btn">
+                            <div class="upload-placeholder">
+                                <!--svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                </svg-->
+                                <p>Subir imagen</p>
+                            </div>
+                        </label>
+                        <div id="image-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Preview">
+                        </div>
+                    </div>
+                    <div class="error-txt" id="error-imagen"></div>
                 </div>
             </div>
 
@@ -115,20 +138,38 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-section">
+                <h3>Ubicación</h3>
+                <div class="form-group">
+                    <label for="ubicacion">¿En dónde será tu evento?</label>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Buscar aquí">
+                    <div class="error-txt" id="error-ubicacion"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Itinerario</h3>
+                <p class="itinerario-hint">¡El espacio perfecto para que tus espectadores puedan ver en qué parte va tu evento!</p>
+                <div id="secciones-container"></div>
+                <button type="button" class="btn btn-agregar-seccion" id="btn-agregar-seccion">
+                    Agregar sección
+                </button>
+            </div>
             
-            <div class="form-group toggle-group">
+            <!-- <div class="form-group toggle-group">
                 <label for="visibilidad">Visibilidad (Activo/Cancelado)</label>
                 <label class="switch">
                     <input type="checkbox" id="visibilidad" name="visibilidad" checked>
                     <span class="slider"></span>
                 </label>
-            </div>
+            </div>-->
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-publicar" id="btnPublicar">
                     Publicar y continuar
                 </button>
-                <button type="button" class="btn btn-cancelar" onclick="window.location.href='../index.php'">Cancelar</button>
+                <button type="button" class="btn btn-cancelar" onclick="window.location.href='../index.html'">Cancelar</button>
             </div>
         </form>
     </div>
@@ -155,5 +196,89 @@
             </div>
         </footer>
     </div>
+    <script>
+        // Manejo de secciones del itinerario
+        let numSecciones = 0;
+        const maxSecciones = 10;
+
+        function agregarSeccion() {
+            if (numSecciones >= maxSecciones) {
+                alert(`Máximo ${maxSecciones} secciones permitidas`);
+                return;
+            }
+
+            numSecciones++;
+            const container = document.getElementById('secciones-container');
+            
+            const seccionDiv = document.createElement('div');
+            seccionDiv.className = 'seccion-itinerario';
+            seccionDiv.id = `seccion-${numSecciones}`;
+            seccionDiv.innerHTML = `
+                <div class="seccion-header">
+                    <h4>Sección ${numSecciones}</h4>
+                    <button type="button" class="btn-eliminar-seccion" onclick="eliminarSeccion(${numSecciones})">✕</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre-seccion-${numSecciones}">Nombre de la sección</label>
+                        <input type="text" id="nombre-seccion-${numSecciones}" name="nombre-seccion-${numSecciones}" placeholder="Ej: Apertura" class="nombre-seccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-seccion-${numSecciones}">Hora de inicio</label>
+                        <div class="input-with-icon">
+                            <input type="time" id="hora-seccion-${numSecciones}" name="hora-seccion-${numSecciones}" class="hora-seccion">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(seccionDiv);
+        }
+
+        function eliminarSeccion(id) {
+            const seccion = document.getElementById(`seccion-${id}`);
+            if (seccion) {
+                seccion.remove();
+            }
+        }
+
+        // Inicializar con 3 secciones por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnAgregarSeccion = document.getElementById('btn-agregar-seccion');
+            btnAgregarSeccion.addEventListener('click', function(e) {
+                e.preventDefault();
+                agregarSeccion();
+            });
+
+            // Agregar 3 secciones iniciales
+            agregarSeccion();
+            agregarSeccion();
+            agregarSeccion();
+
+            // Manejo de carga de imagen
+            const imagenInput = document.getElementById('imagen-evento');
+            const imagePreview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            const uploadPlaceholder = document.querySelector('.upload-placeholder');
+
+            if (imagenInput) {
+                imagenInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            previewImg.src = event.target.result;
+                            imagePreview.style.display = 'block';
+                            uploadPlaceholder.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
