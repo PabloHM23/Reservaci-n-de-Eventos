@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/nav_footer.css">
-    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_welcom.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/crearevento.css">
     <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
-    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/edit_event.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="../Assets/Js/home.js"></script>
-    <script src="../Assets/Js/edit_event.js"></script>
-    <title>Editar Evento</title>
+    <script src="../Assets/Js/newevent.js"></script>
+    <title>Agora Editar Evento</title>
     <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
 </head>
 <body>
@@ -42,144 +41,137 @@
             </ul>
         </nav>
     </div>
-    <br>
-    <div class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <div class="header-title">
-                    <svg class="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                    <h1>Edita y guarda tu evento: Concierto de Jazz</h1>
+    <br> <!-- Espacio para el contenido principal -->
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Edita tu evento</h2>
+            <p>Completa la información para dar vida a tu evento perfecto.</p>
+        </div>
+
+        <form id="createEventForm">
+
+            <div class="form-section">
+                <h3>Información básica</h3>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: “Concierto benéfico” Max. 33 caracteres" maxlength="33">
+                    <div class="error-txt" id="error-nombre"></div>
                 </div>
-                <p class="subtitle">Completa la información para dar vida a tu evento perfecto.</p>
+
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="concierto">Concierto</option>
+                        <option value="conferencia">Conferencia</option>
+                        <option value="boda">Boda</option>
+                        <option value="deporte">Deporte</option>
+                        <option value="arte">Arte</option>
+                        <option value="salon">Salón</option>
+                    </select>
+                    <div class="error-txt" id="error-categoria"></div>
+                </div>
+
+                <div class="form-group area-descripcion">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="5"></textarea>
+                    <div class="error-txt" id="error-descripcion"></div>
+                </div>
             </div>
 
-            <form class="event-form" id="editEventForm" data-event-id="1">
-                <section class="form-section">
-                    <h2 class="section-title">Información básica</h2>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input 
-                                type="text" 
-                                id="nombre" 
-                                name="nombre"
-                                value="Concierto de Jazz"
-                                placeholder='"Concierto benéfico" Max. 33 caracteres'
-                                maxlength="33"
-                                required
-                            >
-                            <div class="error-txt" id="error-nombre"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="categoria">Categoría</label>
-                            <select id="categoria" name="categoria" required>
-                                <option value="">Selecciona una categoría</option>
-                                <option value="1">Arte y Cultura</option>
-                                <option value="2" selected>Bodas</option>
-                                <option value="3">Conciertos</option>
-                                <option value="4">Conferencias</option>
-                                <option value="5">Deportes</option>
-                                <option value="6">Salones</option>
-                            </select>
-                            <div class="error-txt" id="error-categoria"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="form-section">
-                    <h2 class="section-title">Descripción</h2>
-                    <div class="form-group">
-                        <textarea 
-                            id="descripcion" 
-                            name="descripcion"
-                            rows="5"
-                            placeholder="Describe tu evento..."
-                        >Disfruta de una noche inolvidable con los mejores artistas de jazz en vivo. Música, baile y buena compañía en un ambiente único.</textarea>
-                        <div class="error-txt" id="error-descripcion"></div>
-                    </div>
-                </section>
-
-                <section class="form-section">
-                    <h2 class="section-title">Fecha, horario y capacidad</h2>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fecha">Fecha del evento</label>
-                            <input 
-                                type="date" 
-                                id="fecha" 
-                                name="fecha"
-                                value="2024-12-15"
-                                class="input-with-icon"
-                                required
-                            >
-                            <div class="error-txt" id="error-fecha"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="hora">Hora de inicio</label>
-                            <input 
-                                type="time" 
-                                id="hora" 
-                                name="hora"
-                                value="20:00"
-                                class="input-with-icon"
-                                required
-                            >
-                            <div class="error-txt" id="error-hora"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group capacity-group">
-                            <label for="capacidad">Capacidad total</label>
-                            <div class="capacity-control">
-                                <input 
-                                    type="number" 
-                                    id="capacidad" 
-                                    name="capacidad"
-                                    value="150"
-                                    min="1"
-                                    max="30"
-                                    required
-                                >
-                                <div class="capacity-buttons">
-                                    <button type="button" class="capacity-btn" data-action="increment">▲</button>
-                                    <button type="button" class="capacity-btn" data-action="decrement">▼</button>
-                                </div>
+            <div class="form-section">
+                <h3>Imagen del evento</h3>
+                <div class="form-group">
+                    <label for="imagen-evento">Cargar imagen</label>
+                    <div class="image-upload-container">
+                        <input type="file" id="imagen-evento" name="imagen-evento" accept="image/*" style="display: none;">
+                        <label for="imagen-evento" class="image-upload-btn">
+                            <div class="upload-placeholder">
+                                <!--svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                </svg-->
+                                <p>Subir imagen</p>
                             </div>
-                            <span class="capacity-hint">Máx. 30 personas</span>
-                            <div class="error-txt" id="error-capacidad"></div>
+                        </label>
+                        <div id="image-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Preview">
                         </div>
                     </div>
-                </section>
-
-                <section class="form-section">
-                    <div class="visibility-control">
-                        <label for="visibilidad">Visibilidad</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="visibilidad" name="estado" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </section>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-save" id="btnSaveEdit">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; margin-right: 5px;">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                        Guardar cambios
-                    </button>
-                    <button type="button" class="btn-cancel" onclick="window.location.href='mi_evento.php'">Cancelar</button>
+                    <div class="error-txt" id="error-imagen"></div>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Fecha, horario y capacidad</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha-evento">Fecha del evento</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="fecha-evento" name="fecha-evento"> 
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                        </div>
+                        <div class="error-txt" id="error-fecha"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora-inicio">Hora de inicio</label>
+                        <div class="input-with-icon">
+                            <input type="time" id="hora-inicio" name="hora-inicio" placeholder="00:00">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                        </div>
+                        <div class="error-txt" id="error-hora"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="capacidad">Capacidad total</label>
+                        <input type="number" id="capacidad" name="capacidad" value="25" min="1" max="30">
+                        <span class="input-hint">Máximo 30 personas</span>
+                        <div class="error-txt" id="error-capacidad"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Ubicación</h3>
+                <div class="form-group">
+                    <label for="ubicacion">¿En dónde será tu evento?</label>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Buscar aquí">
+                    <div class="error-txt" id="error-ubicacion"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Itinerario</h3>
+                <p class="itinerario-hint">¡El espacio perfecto para que tus espectadores puedan ver en qué parte va tu evento!</p>
+                <div id="secciones-container"></div>
+                <button type="button" class="btn btn-agregar-seccion" id="btn-agregar-seccion">
+                    Agregar sección
+                </button>
+            </div>
+            
+            <!-- <div class="form-group toggle-group">
+                <label for="visibilidad">Visibilidad (Activo/Cancelado)</label>
+                <label class="switch">
+                    <input type="checkbox" id="visibilidad" name="visibilidad" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>-->
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-publicar" id="btnPublicar">
+                    Continuar
+                </button>
+                <button type="button" class="btn btn-cancelar" onclick="window.location.href='../index.html'">Cancelar</button>
+            </div>
+        </form>
     </div>
     <br>
     <div id="footer">
@@ -204,5 +196,89 @@
             </div>
         </footer>
     </div>
+    <script>
+        // Manejo de secciones del itinerario
+        let numSecciones = 0;
+        const maxSecciones = 10;
+
+        function agregarSeccion() {
+            if (numSecciones >= maxSecciones) {
+                alert(`Máximo ${maxSecciones} secciones permitidas`);
+                return;
+            }
+
+            numSecciones++;
+            const container = document.getElementById('secciones-container');
+            
+            const seccionDiv = document.createElement('div');
+            seccionDiv.className = 'seccion-itinerario';
+            seccionDiv.id = `seccion-${numSecciones}`;
+            seccionDiv.innerHTML = `
+                <div class="seccion-header">
+                    <h4>Sección ${numSecciones}</h4>
+                    <button type="button" class="btn-eliminar-seccion" onclick="eliminarSeccion(${numSecciones})">✕</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre-seccion-${numSecciones}">Nombre de la sección</label>
+                        <input type="text" id="nombre-seccion-${numSecciones}" name="nombre-seccion-${numSecciones}" placeholder="Ej: Apertura" class="nombre-seccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-seccion-${numSecciones}">Hora de inicio</label>
+                        <div class="input-with-icon">
+                            <input type="time" id="hora-seccion-${numSecciones}" name="hora-seccion-${numSecciones}" class="hora-seccion">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(seccionDiv);
+        }
+
+        function eliminarSeccion(id) {
+            const seccion = document.getElementById(`seccion-${id}`);
+            if (seccion) {
+                seccion.remove();
+            }
+        }
+
+        // Inicializar con 3 secciones por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnAgregarSeccion = document.getElementById('btn-agregar-seccion');
+            btnAgregarSeccion.addEventListener('click', function(e) {
+                e.preventDefault();
+                agregarSeccion();
+            });
+
+            // Agregar 3 secciones iniciales
+            agregarSeccion();
+            agregarSeccion();
+            agregarSeccion();
+
+            // Manejo de carga de imagen
+            const imagenInput = document.getElementById('imagen-evento');
+            const imagePreview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            const uploadPlaceholder = document.querySelector('.upload-placeholder');
+
+            if (imagenInput) {
+                imagenInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            previewImg.src = event.target.result;
+                            imagePreview.style.display = 'block';
+                            uploadPlaceholder.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord</title>
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/dashbord.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <header class="card header-card">
+            <div class="header-info">
+                <div class="header-img-placeholder" id="img-evento"></div>
+                <div class="header-text">
+                    <h1 id="titulo-evento">--</h1>
+                    <p id="subtitulo-evento">--</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="badge" id="estado-evento">--</span>
+            </div>
+        </header>
+
+        <h2 class="section-title">Métricas generales</h2>
+
+        <section class="metrics-grid">
+            <div class="card metric-card">
+                <div class="metric-icon">🎟️</div>
+                <h3 class="metric-value" id="boletos-vendidos">--</h3>
+                <p class="metric-label" id="boletos-total">Boletos vendidos de -- disponibles</p>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-icon">💲</div>
+                <h3 class="metric-value" id="ingresos-totales">$ --</h3>
+                <p class="metric-label">Total de ingresos generados</p>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-icon">📊</div>
+                <h3 class="metric-value" id="ocupacion-porcentaje">-- %</h3>
+                <p class="metric-label">Ocupación del aforo total</p>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-icon">⚠️</div>
+                <h3 class="metric-value" id="incidencias-total">--</h3>
+                <p class="metric-label">Incidencias registradas</p>
+            </div>
+        </section>
+
+        <section class="middle-layout">
+            
+            <div class="left-col">
+                <div class="card chart-card">
+                    <h3>Boletos vendidos por categoría</h3>
+                    <div class="chart-placeholder" id="grafica-barras">
+                        <p style="color: #888; text-align: center; padding-top: 50px;">[Espacio reservado para gráfica de barras]</p>
+                    </div>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Información del evento</h3>
+                    <div class="info-grid">
+                        <span>Nombre</span> <span class="info-data" id="info-nombre">--</span>
+                        <span>Fecha</span> <span class="info-data" id="info-fecha">--</span>
+                        <span>Horario</span> <span class="info-data" id="info-horario">--</span>
+                        <span>Ubicación</span> <span class="info-data" id="info-ubicacion">--</span>
+                        <span>Categoría</span> <span class="info-data" id="info-categoria">--</span>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-warning" id="btn-editar">Editar información</button>
+                        <button class="btn btn-secondary" id="btn-cancelar">Cancelar evento</button>
+                        <button class="btn btn-danger" id="btn-eliminar">Eliminar evento</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="card chart-card pie-chart-card">
+                    <h3>Distribución de ingresos</h3>
+                    <div class="chart-placeholder" id="grafica-dona">
+                         <p style="color: #888; text-align: center; padding-top: 50px;">[Espacio gráfica dona]</p>
+                    </div>
+                </div>
+
+                <div class="card alerts-card">
+                    <h3>Alertas automáticas</h3>
+                    <p>Las alertas se enviarán a:</p>
+                    <p class="highlight-email" id="email-admin">--</p>
+                    <p>como correo electrónico y notificaciones push en la app móvil sobre:</p>
+                    <ul>
+                        <li>Evento cancelado</li>
+                        <li>Evento eliminado</li>
+                        <li>Próximo a comenzar</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="card incidents-section">
+            <h3>Incidencias reportadas</h3>
+            
+            <div class="incidents-list" id="lista-incidencias">
+                
+                <div class="incident-item">
+                    <div class="incident-content">
+                        <h4 class="incident-author">-- Nombre --</h4>
+                        <span class="incident-date">-- Fecha / Hora --</span>
+                        <p class="incident-text">-- Descripción de la incidencia --</p>
+                    </div>
+                    <div class="incident-action">
+                        <button class="btn btn-danger-small">Eliminar</button>
+                    </div>
+                </div>
+                </div>
+        </section>
+    </div>
+</body>
+</html>

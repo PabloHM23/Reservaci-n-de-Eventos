@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/nav_footer.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_welcom.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/home_events.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/styles_events/events.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/Styles/home_styles/detalle_evento.css">
+    <script src="../Assets/Js/home.js"></script>
+    <title>Detalle de Evento</title>
+    <link rel="shortcut icon" href="../Assets/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="nav">
+        <div class="logo"><a href="../index.html"><img src="../Assets/img/title.png"></a></div>
+        <nav class="nav_links">
+            <ul class="nav-menus">
+                <li class="menu">
+                    <button id="btn" class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                        Eventos ▾
+                    </button>
+                    <div class="menu-content">
+                        <a href="eventos.html">Eventos próximos y pasados</a>
+                        <a href="crear_evento.html">Crear un evento</a>
+                        <a href="mi_evento.html">Mis eventos</a>
+                    </div>
+                </li>
+                <li class="menu">
+                    <button id="btn" class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                        Reservaciones ▾
+                    </button>
+                    <div class="menu-content">
+                        <a href="reservar.html">Reservar evento</a>
+                        <a href="historial_r.html">Historial de reservaciones</a>
+                    </div>
+                </li>
+                <li><button class="menu-btn"><a href="calendario.html">Calendario</a></button></li>
+            </ul>
+        </nav>
+    </div>
+    <br> <!-- Espacio para el contenido principal -->
+
+    <div class="event-hero-skeleton" id="hero-fondo">
+        <div class="hero-content">
+            <h1 id="evento-titulo">--</h1>
+            <p id="evento-subtitulo">--</p>
+        </div>
+    </div>
+
+    <div class="event-details-layout">
+    
+        <div class="event-info-section">
+            <h2>Sobre el evento</h2>
+            <p id="evento-descripcion">
+                --
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-icon">📅</span>
+                    <div class="info-text">
+                        <strong>Fecha</strong>
+                        <p id="evento-fecha">--</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-icon">🕒</span>
+                    <div class="info-text">
+                        <strong>Horario</strong>
+                        <p id="evento-horario">--</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-icon">👥</span>
+                    <div class="info-text">
+                        <strong>Espacios</strong>
+                        <p id="evento-espacios">-- / -- espacios libres</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-icon">⏱️</span>
+                    <div class="info-text">
+                        <strong>Estado</strong>
+                        <p><span class="status-badge" id="evento-estado">--</span></p>
+                    </div>
+                </div>
+                
+                <div class="info-item full-width">
+                    <span class="info-icon">📍</span>
+                    <div class="info-text">
+                        <strong>Ubicación</strong>
+                        <p id="evento-ubicacion">--</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Itinerario</h2>
+            <div class="itinerary-list" id="evento-itinerario">
+                <div class="itinerary-item template">
+                    <span class="iti-time">--:--</span>
+                    <span class="iti-activity">--</span>
+                </div>
+                </div>
+        </div>
+
+        <div class="event-sidebar">
+            <div class="map-box" id="evento-mapa">
+                Vista de mapa -<br>Google Maps
+            </div>
+            
+            <button class="btn-tickets" id="btn-ver-boletos">Ver boletos</button>
+        </div>
+
+    </div>
+
+    <button class="floating-btn" id="btn-flotante" aria-label="Asistente virtual">
+        B
+    </button>
+</body>
+</html>

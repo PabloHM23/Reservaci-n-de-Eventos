@@ -203,13 +203,13 @@ input:checked + .slider:before {
 }
 
 .btn-publicar {
-  background-color: rgba(224, 152, 50, 1); 
+  background-color: rgba(8, 171, 49, 1); 
   color: white;
   display: flex;
   align-items: center;
 }
 .btn-publicar:hover {
-  background-color: #c7801a;
+  background-color: #059669;
 }
 
 .btn-cancelar {
